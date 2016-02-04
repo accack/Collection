@@ -1,4 +1,4 @@
-#Basic UNIX Primer
+#UNIX Primer
 
 ###Sections
 1. [Directories](#directories)
@@ -23,13 +23,13 @@
 
 
 ###Directories
-File and directory paths in UNIX use the forward slash "/" to separate directory names in a path. Examples:
+File and directory paths in UNIX use the forward slash `/` to separate directory names in a path.
 
-Command|Description
+Examples|Description
 -------|-----------
-`/`|"root" directory
-`/usr`|Directory usr (sub-directory of / "root" directory)
-`/usr/STRIM100`|STRIM100 is a subdirectory of /usr
+`/`|"Root" directory
+`/usr`|Directory `usr` (sub-directory of `/`).
+`/usr/STRIM100`|`STRIM100` is a subdirectory of `/usr`.
 
 ###Moving Around The File System
 
@@ -37,10 +37,10 @@ Command|Description
 -------|-----------
 `pwd`|Show the "present working directory", or current directory.
 `cd`|Change current directory to your HOME directory.
-`cd /usr/STRIM100`|Change current directory to /usr/STRIM100.
+`cd /usr/STRIM100`|Change current directory to `/usr/STRIM100`.
 `cd INIT`|Change current directory to INIT which is a sub-directory of the current directory.
 `cd ..`|Change current directory to the parent directory of the current directory.
-`cd $STRMWORK`|Change current directory to the directory defined by the environment variable 'STRMWORK'.
+`cd $STRMWORK`|Change current directory to the directory defined by the environment variable `STRMWORK`.
 `cd ~bob`|Change the current directory to the user bob's home directory (if you have permission).
 
 ###Listing Directory Contents
@@ -107,7 +107,9 @@ Command|Description
 
 ###Shells 
 The behavior of the command line interface will differ slightly depending on the shell program that is being used - some extra behaviors can be quite nifty.
+
 You can find out what shell you are using by the command `echo $SHELL`.
+
 Of course you can create a file with a list of shell commands and execute it like a program to perform a task. This is called a shell script. This is in fact the primary purpose of most shells, not the interactive command line behavior. 
 
 ###Environment Variables
@@ -131,7 +133,8 @@ Command|Description
 A feature of bash and tcsh (and sometimes others) you can use the up-arrow keys to access your previous commands, edit them, and re-execute them.
 
 ###Tab Completion
-A feature of bash and tcsh (and possibly others) you can use the TAB key to complete a partially typed filename. For example if youhave a file called`constantine-monks-and-willy-wonka.txt` in your directory and want to edit it you can type`vi const`, hit the TAB key, and the shell will fill in the rest of the name for you (provided the completion is unique).
+A feature of bash and tcsh (and possibly others) you can use the TAB key to complete a partially typed filename. For example if you have a file called`constantine-monks-and-willy-wonka.txt` in your directory and want to edit it you can type`vi const`, hit the TAB key, and the shell will fill in the rest of the name for you (provided the completion is unique).
+
 Bash will even complete the name of commands and environment variables.And if there are multiple completions, if you hit TAB twice bash will showyou all the completions. Bash is the default user shell for most Linux systems. 
 
 ###Redirection
@@ -174,20 +177,23 @@ Example|Description
 ###Reading and writing tapes, backups, and archives
 #####The `tar` Command  
 The tar command stands for "tape archive". It is the "standard" way to read and write archives (collections of files and whole directory trees).
+
 Often you will find archives of stuff with names like stuff.tar, or stuff.tar.gz.  This is stuff in a tar archive, and stuff in a tar archive which has been compressed using thegzip compression program respectivly. 
+
 Chances are that if someone gives you a tape written on a UNIX system, it will be in tar format, and you will use tar (and your tape drive) to read it. 
+
 Likewise, if you want to write a tape to give to someone else, you should probably use tar as well. 
 
 Example|Description
 -------|-----------
 `tar xv`|Extracts (x) files from the default tape drive while listing (v = verbose) the file names to the screen.
 `tar tv`|Lists the files from the default tape device without extracting them. 
-`tar cv file1 file2`|Write files 'file1' and 'file2' to the default tape device.
-`tar cvf archive.tar file1 [file2...]`|Create a tar archive as a file "archive.tar" containing file1, file2...etc.
-`tar xvf archive.tar`|extract from the archive file
+`tar cv file1 file2`|Write files `file1` and `file2` to the default tape device.
+`tar cvf archive.tar file1 [file2...]`|Create a tar archive as a file `archive.tar` containing file1, file2...etc.
+`tar xvf archive.tar`|Extract from the archive file.
 `tar cvfz archive.tar.gz dname`|Create a gzip compressed tar archive containing everything in the directory 'dname'. This does not work with all versions of tar.
 `tar xvfz archive.tar.gz`|Extract a gzip compressed tar archive.  Does not work with all versions of tar. 
-`tar cvfI archive.tar.bz2 dname`|Create a bz2 compressed tar archive. Does not work with all versions of tar
+`tar cvfI archive.tar.bz2 dname`|Create a bz2 compressed tar archive. Does not work with all versions of tar.
 
 ###File Compression
 #####compress, gzip, and bzip2
@@ -196,21 +202,21 @@ The standard UNIX compression commands are compress and uncompress. Compressed f
 
 Example|Description
 -------|-----------
-`compress part.igs`|Creates a compressed file part.igs.Z
-`uncompress part.igs`|Uncompresseis part.igs from the compressed file part.igs.Z. Note the .Z is not required.
+`compress part.igs`|Creates a compressed file `part.igs.Z`.
+`uncompress part.igs`|Uncompresseis `part.igs` from the compressed file `part.igs.Z`. Note the `.Z` is not required.
 
-Another common compression utility is **gzip** (and **gunzip**). These are the GNU compress and uncompress utilities. gzip usually gives better compression than standard compress, but may not be installed on all systems. The suffix for gzipped files is`.gz`.
+Another common compression utility is **gzip** (and **gunzip**). These are the GNU compress and uncompress utilities. gzip usually gives better compression than standard compress, but may not be installed on all systems. The suffix for gzipped files is `.gz`.
 
 Example|Description
 -------|-----------
-`gzip part.igs`|Creates a compressed file `part.igs.gz`
-`gunzip part.igs`|Extracts the original file from `part.igs.gz`
+`gzip part.igs`|Creates a compressed file `part.igs.gz`.
+`gunzip part.igs`|Extracts the original file from `part.igs.gz`.
 
 The **bzip2** utility has (in general) even better compression than gzip, but at the cost of longer times to compress and uncompress the files. It is not as common a utility as gzip, but is becoming more generally available. 
 
 Example|Description
 -------|-----------
-`bzip2 part.igs`|Create a compressed Iges file `part.igs.bz2`
+`bzip2 part.igs`|Create a compressed Iges file `part.igs.bz2`.
 `bunzip2 part.igs.bz2`|Uncompress the compressed iges file. 
 
 ###Looking For Help
@@ -303,6 +309,7 @@ Example|Description
 ####Saving and Quitting and Other "ex" Commands
 
 These commands are all prefixed by pressing colon (:) and then entered in the lower left corner of the window. They are called "ex" commands because they are commands of the ex text editor - the precursor line editor to the screen editor vi. You cannot enter an "ex" command when you are in an edit mode (typing text onto the screen).
+
 Press <ESC> to exit from an editing mode.
 
 Command|Description
@@ -318,4 +325,4 @@ Command|Description
 `:set nonumber`|Turns off line numbering
 
 
-#########*Information sourced from [here](http://freeengineer.org/learnUNIXin10minutes.html) - see for copyright details, etc.*
+> *Information sourced from [here](http://freeengineer.org/learnUNIXin10minutes.html) - see for copyright details, etc.*

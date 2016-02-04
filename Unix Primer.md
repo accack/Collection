@@ -9,7 +9,7 @@
 6. [Viewing And Editing Files](#viewing-and-editing-files)
 7. [Shells](#shells)
 8. [Environment Variables](#environment-variables)
-9. [Interactive History](#interactive-history)
+9. [Previous Commands](#previous-commands)
 10. [Tab Completion](#tab-completion)
 12. [Redirection](#redirection)
 13. [Pipes](#pipes)
@@ -71,7 +71,7 @@ type of file: - = normal file, d=directory, l = symbolic link, and others...
 
 Command|Description
 -------|-----------
-`chmod 755 file`|Changes the permissions of file to be rwx for the owner, and rx for the group and the world.<br>*7 = rwx = 111 binary; 5 = r-x = 101 binary*
+`chmod 755 file`|Changes the permissions of file to be rwx for the owner, and rx for the group and the world.<br>*7 = rwx (111 binary); 5 = r-x (101 binary)*
 `chgrp user file`|Makes file belong to the group user.
 `chown cliff file`|Makes cliff the owner of file.
 `chown -R cliff dir`|Makes cliff the owner of dir and everything in its directory tree. 
@@ -129,13 +129,13 @@ Command|Description
 `echo $CASROOT`|Prints out the value of `CASROOT`, or `/usr/local/CAS3.0`
 `printenv CASROOT`|Does the same thing in bash and some other shells. 
 
-###Interactive History
-A feature of bash and tcsh (and sometimes others) you can use the up-arrow keys to access your previous commands, edit them, and re-execute them.
+###Previous Commands
+A feature of most terminal-type editors is that you can use the up-arrow keys to access your previous commands, edit them, and re-execute them.
 
 ###Tab Completion
-A feature of bash and tcsh (and possibly others) you can use the TAB key to complete a partially typed filename. For example if you have a file called`constantine-monks-and-willy-wonka.txt` in your directory and want to edit it you can type`vi const`, hit the TAB key, and the shell will fill in the rest of the name for you (provided the completion is unique).
+Another feature of many editors is that you can use the TAB key to complete a partially typed filename. For example if you have a file called`constantine-monks-and-willy-wonka.txt` in your directory and want to edit it you can type`vi const`, hit the TAB key, and the shell will fill in the rest of the name for you (provided the completion is unique). Bash will even complete the name of commands and environment variables.
 
-Bash will even complete the name of commands and environment variables.And if there are multiple completions, if you hit TAB twice bash will showyou all the completions. Bash is the default user shell for most Linux systems. 
+If there are multiple completions, if you hit TAB twice your terminal will probably show you all the completions. 
 
 ###Redirection
 Command|Description
@@ -143,7 +143,7 @@ Command|Description
 `grep string filename > newfile`|Redirects the output of the above grep command to a file 'newfile'.
 `grep string filename >> existfile`|Appends the output of the grep command to the end of 'existfile'.
 
-The redirection directives, > and >> can be used on the output of most commands 
+The redirection directives, `>` and `>>` can be used on the output of most commands 
 to direct their output to a file.
 
 ###Pipes
@@ -151,8 +151,8 @@ The pipe symbol "&#124;" is used to direct the output of one command to the inpu
 
 Example|Description
 -------|-----------
-`ls -l &#124; more`|This commands takes the output of the long format directory list command `ls -l` and pipes it through the more command (also known as a filter). In this case a very long list of files can be viewed a page at a time.
-`du -sc * &#124; sort -n &#124; tail`|The command `du -sc` lists the sizes of all files and directories in the current working directory. That is piped through `sort -n` which orders the output from smallest to largest size. Finally, that output is piped through `tail` which displays only the last few (which just happen to be the largest) results.
+`ls -l `&#124;` more`|This commands takes the output of the long format directory list command `ls -l` and pipes it through the more command (also known as a filter). In this case a very long list of files can be viewed a page at a time.
+`du -sc * `&#124;` sort -n `&#124;` tail`|The command `du -sc` lists the sizes of all files and directories in the current working directory. That is piped through `sort -n` which orders the output from smallest to largest size. Finally, that output is piped through `tail` which displays only the last few (which just happen to be the largest) results.
 
 ###Command Substitution
 You can use the output of one command as an input to another command in another way called command substitution. Command substitution is invoked when by enclosing the substituted command in backwards single quotes. For example `cat 'find . -name aaa.txt'` which will cat (dump to the screen) all the files named aaa.txt that exist in the current directory or in any subdirectory tree. 
